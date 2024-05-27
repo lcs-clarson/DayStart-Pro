@@ -8,17 +8,35 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var currentTime = Date()
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("\(currentTime, formatter: DateFormatter.shortTime)")
+                .font(.largeTitle)
+                .padding()
+                .onAppear(perform: updateTime)
         }
-        .padding()
+    }
+
+    func updateTime() {
+        let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            self.currentTime = Date()
+        }
+        RunLoop.current.add(timer, forMode: .common)
     }
 }
 
-#Preview {
-    ContentView()
+extension DateFormatter {
+    static var shortTime: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        return formatter
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }
