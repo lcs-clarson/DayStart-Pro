@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct DayStart_ProApp: App {
+struct DayStartProApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+            FrontPageView()
         }
     }
 }
