@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB997CA02C0A29F20070656C /* AddReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB997C9F2C0A29F10070656C /* AddReminderView.swift */; };
 		CBD8C4EA2C08B2B600A507B5 /* FrontPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD8C4E92C08B2B600A507B5 /* FrontPageView.swift */; };
 		CBD8C4EE2C08BA5800A507B5 /* AlarmSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD8C4ED2C08BA5800A507B5 /* AlarmSettingView.swift */; };
 		CBFC49EA2C05110F001FF1BC /* DayStart_ProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFC49E92C05110F001FF1BC /* DayStart_ProApp.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CB997C9F2C0A29F10070656C /* AddReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReminderView.swift; sourceTree = "<group>"; };
 		CBD8C4E92C08B2B600A507B5 /* FrontPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontPageView.swift; sourceTree = "<group>"; };
 		CBD8C4ED2C08BA5800A507B5 /* AlarmSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingView.swift; sourceTree = "<group>"; };
 		CBFC49E62C05110F001FF1BC /* DayStart Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DayStart Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +63,7 @@
 				CBFC49EF2C051112001FF1BC /* Preview Content */,
 				CBD8C4E92C08B2B600A507B5 /* FrontPageView.swift */,
 				CBD8C4ED2C08BA5800A507B5 /* AlarmSettingView.swift */,
+				CB997C9F2C0A29F10070656C /* AddReminderView.swift */,
 			);
 			path = "DayStart Pro";
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 				CBFC49EC2C05110F001FF1BC /* ContentView.swift in Sources */,
 				CBFC49EA2C05110F001FF1BC /* DayStart_ProApp.swift in Sources */,
 				CBD8C4EA2C08B2B600A507B5 /* FrontPageView.swift in Sources */,
+				CB997CA02C0A29F20070656C /* AddReminderView.swift in Sources */,
 				CBD8C4EE2C08BA5800A507B5 /* AlarmSettingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
