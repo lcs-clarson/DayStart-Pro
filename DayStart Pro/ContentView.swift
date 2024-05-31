@@ -13,6 +13,13 @@ struct MainView: View {
     @State private var showAlarmSetting = false
     @State private var selectedTime = Date()
     @State private var alarms: [Date] = []
+    @State private var quoteIndex = 0
+
+    let quotes = [
+        "The best way to get started is to quit talking and begin doing. - Walt Disney",
+        "The pessimist sees difficulty in every opportunity. The optimist sees opportunity in every difficulty. - Winston Churchill",
+        "Don’t let yesterday take up too much of today. - Will Rogers"
+    ]
 
     var body: some View {
         NavigationView {
@@ -79,6 +86,28 @@ struct MainView: View {
                         }
                         .padding()
                     }
+
+                    Button(action: {
+                        quoteIndex = (quoteIndex + 1) % quotes.count
+                    }) {
+                        Text("Show Another Quote")
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                    .padding()
+                    .padding(.top, 20)
+
+                    Text("Quote of the Day")
+                        .font(.title)
+                        .padding()
+
+                    Text(quotes[quoteIndex])
+                        .font(.body)
+                        .padding()
+
+                    Spacer()
                 }
             }
             .navigationTitle("DayStartPro")
