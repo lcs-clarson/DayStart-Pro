@@ -34,6 +34,7 @@ struct MainView: View {
                                             .foregroundColor(.red)
                                     }
                                 }
+                                .listRowBackground(Color.clear)
                             }
                         }
                         Section(header: Text("Alarms")) {
@@ -51,7 +52,7 @@ struct MainView: View {
                             }
                         }
                     }
-                    .listStyle(InsetGroupedListStyle())
+                    .listStyle(.plain)
 
                     HStack {
                         Button(action: {
@@ -83,6 +84,7 @@ struct MainView: View {
             .sheet(isPresented: $showAddReminder) {
                 AddReminderView(reminders: $reminders)
             }
+            .presentationDetents([.large, .medium])
             .sheet(isPresented: $showAlarmSetting) {
                 AlarmSettingView(selectedTime: $selectedTime, alarms: $alarms)
             }
