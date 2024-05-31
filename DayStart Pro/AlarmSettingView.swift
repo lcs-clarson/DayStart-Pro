@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AlarmSettingView: View {
     @Binding var selectedTime: Date
+    @Binding var alarms: [Date]
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
@@ -19,7 +20,7 @@ struct AlarmSettingView: View {
                 .padding()
 
             Button(action: {
-                // Save the selected time as the alarm time (this is where you'd normally handle saving the alarm)
+                alarms.append(selectedTime)
                 presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Set Alarm")
@@ -38,6 +39,6 @@ struct AlarmSettingView: View {
 
 struct AlarmSettingView_Previews: PreviewProvider {
     static var previews: some View {
-        AlarmSettingView(selectedTime: .constant(Date()))
+        AlarmSettingView(selectedTime: .constant(Date()), alarms: .constant([]))
     }
 }

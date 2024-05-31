@@ -12,40 +12,44 @@ struct MainView: View {
     @State private var showAddReminder = false
     @State private var showAlarmSetting = false
     @State private var selectedTime = Date()
+    @State private var alarms: [Date] = []
 
     var body: some View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(reminders, id: \.self) { reminder in
-                        HStack {
-                            Text(reminder)
-                            Spacer()
-                            Button(action: {
-                                reminders.removeAll { $0 == reminder }
-                            }) {
-                                Image(systemName: "trash")
-                                    .foregroundColor(.red)
+                    Section(header: Text("Reminders")) {
+                        ForEach(reminders, id: \.self) { reminder in
+                            HStack {
+                                Text(reminder)
+                                Spacer()
+                                Button(action: {
+                                    reminders.removeAll { $0 == reminder }
+                                }) {
+                                    Image(systemName: "trash")
+                                        .foregroundColor(.red)
+                                }
+                            }
+                        }
+                    }
+                    Section(header: Text("Alarms")) {
+                        ForEach(alarms, id: \.self) { alarm in
+                            HStack {
+                                Text("\(alarm, style: .time)")
+                                Spacer()
+                                Button(action: {
+                                    alarms.removeAll { $0 == alarm }
+                                }) {
+                                    Image(systemName: "trash")
+                                        .foregroundColor(.red)
+                                }
                             }
                         }
                     }
                 }
-
-                Button(action: {
-                    showAlarmSetting.toggle()
-                }) {
-                    Text("Set Alarm")
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-                .padding()
-
-                Spacer()
+                .listStyle(InsetGroupedListStyle())
 
                 HStack {
-                    Spacer()
                     Button(action: {
                         showAddReminder.toggle()
                     }) {
@@ -55,19 +59,20 @@ struct MainView: View {
                             .foregroundColor(.blue)
                             .padding()
                     }
+
+                    Spacer()
+
+                    Button(action: {
+                        showAlarmSetting.toggle()
+                    }) {
+                        Text("Set Alarm")
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                    .padding()
                 }
-
-                Spacer()
-
-                Text("Quote of the Day")
-                    .font(.title)
-                    .padding()
-
-                Text(getQuoteOfTheDay())
-                    .font(.body)
-                    .padding()
-
-                Spacer()
             }
             .navigationTitle("DayStartPro")
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -77,13 +82,12 @@ struct MainView: View {
                 AddReminderView(reminders: $reminders)
             }
             .sheet(isPresented: $showAlarmSetting) {
-                AlarmSettingView(selectedTime: $selectedTime)
+                AlarmSettingView(selectedTime: $selectedTime, alarms: $alarms)
             }
         }
     }
 
     func getQuoteOfTheDay() -> String {
-        // Sample quotes
         let quotes = [
             "The best way to get started is to quit talking and begin doing. - Walt Disney",
             "The pessimist sees difficulty in every opportunity. The optimist sees opportunity in every difficulty. - Winston Churchill",
