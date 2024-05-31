@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AlarmSettingView: View {
     @Binding var selectedTime: Date
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         VStack {
@@ -18,7 +19,8 @@ struct AlarmSettingView: View {
                 .padding()
 
             Button(action: {
-                // Save the selected time as the alarm time
+                // Save the selected time as the alarm time (this is where you'd normally handle saving the alarm)
+                presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Set Alarm")
                     .padding()
