@@ -9,14 +9,28 @@ import SwiftUI
 
 struct MainView: View {
     @State private var reminders: [String] = []
+    @State private var showAddReminder = false
     @State private var showAlarmSetting = false
     @State private var selectedTime = Date()
 
     var body: some View {
         NavigationView {
             VStack {
-                Spacer()
-                
+                List {
+                    ForEach(reminders, id: \.self) { reminder in
+                        HStack {
+                            Text(reminder)
+                            Spacer()
+                            Button(action: {
+                                reminders.removeAll { $0 == reminder }
+                            }) {
+                                Image(systemName: "trash")
+                                    .foregroundColor(.red)
+                            }
+                        }
+                    }
+                }
+
                 Button(action: {
                     showAlarmSetting.toggle()
                 }) {
@@ -30,18 +44,28 @@ struct MainView: View {
 
                 Spacer()
 
-                Button(action: {
-                    // Add new reminder
-                    reminders.append("New Reminder")
-                }) {
-                    Image(systemName: "plus.circle.fill")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .foregroundColor(.blue)
-                        .padding()
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        showAddReminder.toggle()
+                    }) {
+                        Image(systemName: "plus.circle.fill")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(.blue)
+                            .padding()
+                    }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
+
+                Spacer()
+
+                Text("Quote of the Day")
+                    .font(.title)
+                    .padding()
+
+                Text(getQuoteOfTheDay())
+                    .font(.body)
+                    .padding()
 
                 Spacer()
             }
@@ -49,10 +73,24 @@ struct MainView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(LinearGradient(gradient: Gradient(colors: [.blue, .purple]), startPoint: .top, endPoint: .bottom))
             .edgesIgnoringSafeArea(.all)
+            .sheet(isPresented: $showAddReminder) {
+                AddReminderView(reminders: $reminders)
+            }
             .sheet(isPresented: $showAlarmSetting) {
                 AlarmSettingView(selectedTime: $selectedTime)
             }
         }
+    }
+
+    func getQuoteOfTheDay() -> String {
+        // Sample quotes
+        let quotes = [
+            "The best way to get started is to quit talking and begin doing. - Walt Disney",
+            "The pessimist sees difficulty in every opportunity. The optimist sees opportunity in every difficulty. - Winston Churchill",
+            "Don’t let yesterday take up too much of today. - Will Rogers"
+        ]
+        let index = Calendar.current.component(.day, from: Date()) % quotes.count
+        return quotes[index]
     }
 }
 
