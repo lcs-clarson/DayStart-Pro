@@ -49,6 +49,7 @@ struct MainView: View {
                                             .foregroundColor(.red)
                                     }
                                 }
+                                .listRowBackground(Color.clear)
                             }
                         }
                     }
@@ -84,7 +85,7 @@ struct MainView: View {
             .sheet(isPresented: $showAddReminder) {
                 AddReminderView(reminders: $reminders)
             }
-            .presentationDetents([.large, .medium])
+            .presentationDetents([.medium])
             .sheet(isPresented: $showAlarmSetting) {
                 AlarmSettingView(selectedTime: $selectedTime, alarms: $alarms)
             }
