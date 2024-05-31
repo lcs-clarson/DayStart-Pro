@@ -16,68 +16,70 @@ struct MainView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                List {
-                    Section(header: Text("Reminders")) {
-                        ForEach(reminders, id: \.self) { reminder in
-                            HStack {
-                                Text(reminder)
-                                Spacer()
-                                Button(action: {
-                                    reminders.removeAll { $0 == reminder }
-                                }) {
-                                    Image(systemName: "trash")
-                                        .foregroundColor(.red)
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: [.blue, .purple]), startPoint: .top, endPoint: .bottom)
+                    .edgesIgnoringSafeArea(.all)
+                
+                VStack {
+                    List {
+                        Section(header: Text("Reminders")) {
+                            ForEach(reminders, id: \.self) { reminder in
+                                HStack {
+                                    Text(reminder)
+                                    Spacer()
+                                    Button(action: {
+                                        reminders.removeAll { $0 == reminder }
+                                    }) {
+                                        Image(systemName: "trash")
+                                            .foregroundColor(.red)
+                                    }
+                                }
+                            }
+                        }
+                        Section(header: Text("Alarms")) {
+                            ForEach(alarms, id: \.self) { alarm in
+                                HStack {
+                                    Text("\(alarm, style: .time)")
+                                    Spacer()
+                                    Button(action: {
+                                        alarms.removeAll { $0 == alarm }
+                                    }) {
+                                        Image(systemName: "trash")
+                                            .foregroundColor(.red)
+                                    }
                                 }
                             }
                         }
                     }
-                    Section(header: Text("Alarms")) {
-                        ForEach(alarms, id: \.self) { alarm in
-                            HStack {
-                                Text("\(alarm, style: .time)")
-                                Spacer()
-                                Button(action: {
-                                    alarms.removeAll { $0 == alarm }
-                                }) {
-                                    Image(systemName: "trash")
-                                        .foregroundColor(.red)
-                                }
-                            }
+                    .listStyle(InsetGroupedListStyle())
+
+                    HStack {
+                        Button(action: {
+                            showAddReminder.toggle()
+                        }) {
+                            Image(systemName: "plus.circle.fill")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                                .foregroundColor(.blue)
+                                .padding()
                         }
-                    }
-                }
-                .listStyle(InsetGroupedListStyle())
 
-                HStack {
-                    Button(action: {
-                        showAddReminder.toggle()
-                    }) {
-                        Image(systemName: "plus.circle.fill")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                            .foregroundColor(.blue)
-                            .padding()
-                    }
+                        Spacer()
 
-                    Spacer()
-
-                    Button(action: {
-                        showAlarmSetting.toggle()
-                    }) {
-                        Text("Set Alarm")
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+                        Button(action: {
+                            showAlarmSetting.toggle()
+                        }) {
+                            Text("Set Alarm")
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        .padding()
                     }
-                    .padding()
                 }
             }
             .navigationTitle("DayStartPro")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(LinearGradient(gradient: Gradient(colors: [.blue, .purple]), startPoint: .top, endPoint: .bottom))
-            .edgesIgnoringSafeArea(.all)
             .sheet(isPresented: $showAddReminder) {
                 AddReminderView(reminders: $reminders)
             }
@@ -85,16 +87,6 @@ struct MainView: View {
                 AlarmSettingView(selectedTime: $selectedTime, alarms: $alarms)
             }
         }
-    }
-
-    func getQuoteOfTheDay() -> String {
-        let quotes = [
-            "The best way to get started is to quit talking and begin doing. - Walt Disney",
-            "The pessimist sees difficulty in every opportunity. The optimist sees opportunity in every difficulty. - Winston Churchill",
-            "Don’t let yesterday take up too much of today. - Will Rogers"
-        ]
-        let index = Calendar.current.component(.day, from: Date()) % quotes.count
-        return quotes[index]
     }
 }
 
