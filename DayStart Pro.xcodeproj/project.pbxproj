@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB3548BC2C0E45D800F89E67 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3548BB2C0E45D800F89E67 /* SettingsView.swift */; };
 		CB997CA02C0A29F20070656C /* AddReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB997C9F2C0A29F10070656C /* AddReminderView.swift */; };
 		CBD8C4EA2C08B2B600A507B5 /* FrontPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD8C4E92C08B2B600A507B5 /* FrontPageView.swift */; };
 		CBD8C4EE2C08BA5800A507B5 /* AlarmSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD8C4ED2C08BA5800A507B5 /* AlarmSettingView.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CB3548BB2C0E45D800F89E67 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CB997C9F2C0A29F10070656C /* AddReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReminderView.swift; sourceTree = "<group>"; };
 		CBD8C4E92C08B2B600A507B5 /* FrontPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontPageView.swift; sourceTree = "<group>"; };
 		CBD8C4ED2C08BA5800A507B5 /* AlarmSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingView.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				CBD8C4E92C08B2B600A507B5 /* FrontPageView.swift */,
 				CBD8C4ED2C08BA5800A507B5 /* AlarmSettingView.swift */,
 				CB997C9F2C0A29F10070656C /* AddReminderView.swift */,
+				CB3548BB2C0E45D800F89E67 /* SettingsView.swift */,
 			);
 			path = "DayStart Pro";
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 				CBFC49EC2C05110F001FF1BC /* ContentView.swift in Sources */,
 				CBFC49EA2C05110F001FF1BC /* DayStart_ProApp.swift in Sources */,
 				CBD8C4EA2C08B2B600A507B5 /* FrontPageView.swift in Sources */,
+				CB3548BC2C0E45D800F89E67 /* SettingsView.swift in Sources */,
 				CB997CA02C0A29F20070656C /* AddReminderView.swift in Sources */,
 				CBD8C4EE2C08BA5800A507B5 /* AlarmSettingView.swift in Sources */,
 			);
