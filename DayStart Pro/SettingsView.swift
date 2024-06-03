@@ -16,13 +16,15 @@ struct SettingsView: View {
 
     var body: some View {
         NavigationView {
-            Form {
+            List {
                 Section(header: Text("Time Zone")) {
                     Picker("Select Time Zone", selection: $selectedTimeZone) {
                         ForEach(timeZones, id: \.self) { timeZoneID in
                             Text(timeZoneID).tag(TimeZone(identifier: timeZoneID))
                         }
                     }
+                    .pickerStyle(WheelPickerStyle()) // Wheel picker for better scrolling
+                    .frame(height: 200) // Limit the height for better scrolling experience
                 }
 
                 Section(header: Text("Ringer")) {
@@ -31,6 +33,7 @@ struct SettingsView: View {
                             Text(ringer)
                         }
                     }
+                    .pickerStyle(MenuPickerStyle()) // Menu picker for ringer selection
                 }
             }
             .navigationTitle("Settings")
