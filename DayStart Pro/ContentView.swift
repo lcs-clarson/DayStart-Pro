@@ -14,7 +14,8 @@ struct MainView: View {
     @State private var selectedTime = Date()
     @State private var alarms: [Date] = []
     @State private var quoteIndex = 0
-
+    @State private var showSettings = false
+    
     let quotes = [
         "The best way to get started is to quit talking and begin doing. - Walt Disney",
         "The pessimist sees difficulty in every opportunity. The optimist sees opportunity in every difficulty. - Winston Churchill",
@@ -108,6 +109,19 @@ struct MainView: View {
                         .padding()
 
                     Spacer()
+
+                    Button(action: {
+                        showSettings.toggle()
+                    }) {
+                        Image(systemName: "gearshape.fill")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(.blue)
+                            .padding()
+                    }
+                    .sheet(isPresented: $showSettings) {
+                        SettingsView()
+                    }
                 }
             }
             .navigationTitle("DayStartPro")
