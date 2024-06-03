@@ -9,9 +9,10 @@ import SwiftUI
 
 struct SettingsView: View {
     @Binding var selectedTimeZone: TimeZone
-    @State private var selectedRinger = "Default"
     @Environment(\.presentationMode) var presentationMode
-
+    
+    @State private var selectedRinger: String = UserDefaults.standard.string(forKey: "selectedRinger") ?? "Default"
+    
     // Create a list of time zones with clean display names
     var timeZones: [String] {
         TimeZone.knownTimeZoneIdentifiers.map { timeZoneID in
@@ -40,6 +41,9 @@ struct SettingsView: View {
                         }
                     }
                     .pickerStyle(MenuPickerStyle())
+                    .onChange(of: selectedRinger) { newValue in
+                        UserDefaults.standard.set(newValue, forKey: "selectedRinger")
+                    }
                 }
             }
             .navigationTitle("Settings")
