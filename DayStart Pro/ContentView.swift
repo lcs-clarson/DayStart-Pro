@@ -15,7 +15,8 @@ struct MainView: View {
     @State private var alarms: [Date] = []
     @State private var quoteIndex = 0
     @State private var showSettings = false
-    
+    @State private var selectedTimeZone = TimeZone.current
+
     let quotes = [
         "The best way to get started is to quit talking and begin doing. - Walt Disney",
         "The pessimist sees difficulty in every opportunity. The optimist sees opportunity in every difficulty. - Winston Churchill",
@@ -48,7 +49,7 @@ struct MainView: View {
                         Section(header: Text("Alarms")) {
                             ForEach(alarms, id: \.self) { alarm in
                                 HStack {
-                                    Text("\(alarm, style: .time)")
+                                    Text(alarm, style: .time)
                                     Spacer()
                                     Button(action: {
                                         alarms.removeAll { $0 == alarm }
@@ -120,7 +121,7 @@ struct MainView: View {
                             .padding()
                     }
                     .sheet(isPresented: $showSettings) {
-                        SettingsView()
+                        SettingsView(selectedTimeZone: $selectedTimeZone)
                     }
                 }
             }
@@ -130,7 +131,7 @@ struct MainView: View {
             }
             .presentationDetents([.medium])
             .sheet(isPresented: $showAlarmSetting) {
-                AlarmSettingView(selectedTime: $selectedTime, alarms: $alarms)
+                AlarmSettingView(selectedTime: $selectedTime, alarms: $alarms, selectedTimeZone: $selectedTimeZone)
             }
         }
     }
@@ -141,3 +142,4 @@ struct MainView_Previews: PreviewProvider {
         MainView()
     }
 }
+
