@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AlarmSettingView: View {
+    @Environment(\.presentationMode) var presentationMode
     @Binding var selectedTime: Date
     @Binding var alarms: [Date]
     @Binding var selectedTimeZone: TimeZone
@@ -22,6 +23,7 @@ struct AlarmSettingView: View {
 
                 Button(action: {
                     alarms.append(selectedTime)
+                    presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Add Alarm")
                         .padding()
@@ -33,7 +35,7 @@ struct AlarmSettingView: View {
             }
             .navigationTitle("Set Alarm")
             .navigationBarItems(trailing: Button("Done") {
-                // Action to dismiss the alarm setting view
+                presentationMode.wrappedValue.dismiss()
             })
         }
     }
