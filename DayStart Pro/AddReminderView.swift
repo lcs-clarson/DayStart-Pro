@@ -20,8 +20,9 @@ struct AddReminderView: View {
                     .padding()
 
                 Button(action: {
-                    if !newReminder.isEmpty {
-                        reminders.append(newReminder)
+                    let trimmedReminder = newReminder.trimmingCharacters(in: .whitespacesAndNewlines)
+                    if !trimmedReminder.isEmpty {
+                        reminders.append(trimmedReminder)
                         presentationMode.wrappedValue.dismiss()
                     }
                 }) {
