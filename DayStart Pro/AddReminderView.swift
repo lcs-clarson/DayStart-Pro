@@ -13,26 +13,31 @@ struct AddReminderView: View {
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
-        VStack {
-            TextField("Enter new reminder", text: $newReminder)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-
-            Button(action: {
-                if !newReminder.isEmpty {
-                    reminders.append(newReminder)
-                    presentationMode.wrappedValue.dismiss()
-                }
-            }) {
-                Text("Add Reminder")
+        NavigationView {
+            VStack {
+                TextField("Enter new reminder", text: $newReminder)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+
+                Button(action: {
+                    if !newReminder.isEmpty {
+                        reminders.append(newReminder)
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }) {
+                    Text("Add Reminder")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .padding()
             }
             .padding()
+            .navigationBarItems(trailing: Button("Done") {
+                presentationMode.wrappedValue.dismiss()
+            })
         }
-        .padding()
     }
 }
 
@@ -41,4 +46,3 @@ struct AddReminderView_Previews: PreviewProvider {
         AddReminderView(reminders: .constant([]))
     }
 }
-
