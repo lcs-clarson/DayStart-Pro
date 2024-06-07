@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Supabase
 
 struct MainView: View {
     @State private var reminders: [String] = []
@@ -37,7 +38,7 @@ struct MainView: View {
                                     Text(reminder)
                                     Spacer()
                                     Button(action: {
-                                        reminders.removeAll { $0 == reminder }
+                                        deleteReminder(reminder)
                                     }) {
                                         Image(systemName: "trash")
                                             .foregroundColor(.red)
@@ -135,6 +136,22 @@ struct MainView: View {
             }
         }
     }
+
+    func deleteReminder(_ reminder: String) {
+        Task {
+            do {
+                let _ = try await supabase.from("reminders")
+                    .delete()
+                    .eq("text", value: reminder)
+                    .execute()
+                
+                // If deletion succeeds, remove the reminder locally
+                reminders.removeAll { $0 == reminder }
+            } catch {
+                print("Error deleting reminder: \(error.localizedDescription)")
+            }
+        }
+    }
 }
 
 struct MainView_Previews: PreviewProvider {
@@ -142,3 +159,4 @@ struct MainView_Previews: PreviewProvider {
         MainView()
     }
 }
+
