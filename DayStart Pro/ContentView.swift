@@ -6,10 +6,9 @@
 //
 
 import SwiftUI
-import Supabase
 
 struct MainView: View {
-    @State private var reminders: [String] = []
+    @StateObject private var viewModel = RemindersViewModel()
     @State private var showAddReminder = false
     @State private var showAlarmSetting = false
     @State private var selectedTime = Date()
@@ -33,12 +32,12 @@ struct MainView: View {
                 VStack {
                     List {
                         Section(header: Text("Reminders")) {
-                            ForEach(reminders, id: \.self) { reminder in
+                            ForEach(viewModel.reminders, id: \.self) { reminder in
                                 HStack {
                                     Text(reminder)
                                     Spacer()
                                     Button(action: {
-                                        deleteReminder(reminder)
+                                        viewModel.deleteReminder(reminder)
                                     }) {
                                         Image(systemName: "trash")
                                             .foregroundColor(.red)
@@ -128,27 +127,10 @@ struct MainView: View {
             }
             .navigationTitle("DayStartPro")
             .sheet(isPresented: $showAddReminder) {
-                AddReminderView(reminders: $reminders)
+                AddReminderView(reminders: $viewModel.reminders)
             }
-            .presentationDetents([.medium])
             .sheet(isPresented: $showAlarmSetting) {
                 AlarmSettingView(selectedTime: $selectedTime, alarms: $alarms, selectedTimeZone: $selectedTimeZone)
-            }
-        }
-    }
-
-    func deleteReminder(_ reminder: String) {
-        Task {
-            do {
-                let _ = try await supabase.from("reminders")
-                    .delete()
-                    .eq("text", value: reminder)
-                    .execute()
-                
-                // If deletion succeeds, remove the reminder locally
-                reminders.removeAll { $0 == reminder }
-            } catch {
-                print("Error deleting reminder: \(error.localizedDescription)")
             }
         }
     }
@@ -159,4 +141,3 @@ struct MainView_Previews: PreviewProvider {
         MainView()
     }
 }
-
