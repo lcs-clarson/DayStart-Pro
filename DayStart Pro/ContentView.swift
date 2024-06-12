@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject private var viewModel = RemindersViewModel()
+    @State private var reminders: [String] = []
     @State private var showAddReminder = false
     @State private var showAlarmSetting = false
     @State private var selectedTime = Date()
@@ -32,12 +32,12 @@ struct MainView: View {
                 VStack {
                     List {
                         Section(header: Text("Reminders")) {
-                            ForEach(viewModel.reminders, id: \.self) { reminder in
+                            ForEach(reminders, id: \.self) { reminder in
                                 HStack {
                                     Text(reminder)
                                     Spacer()
                                     Button(action: {
-                                        viewModel.deleteReminder(reminder)
+                                        deleteReminder(reminder)
                                     }) {
                                         Image(systemName: "trash")
                                             .foregroundColor(.red)
@@ -127,12 +127,16 @@ struct MainView: View {
             }
             .navigationTitle("DayStartPro")
             .sheet(isPresented: $showAddReminder) {
-                AddReminderView(reminders: $viewModel.reminders)
+                AddReminderView(reminders: $reminders)
             }
             .sheet(isPresented: $showAlarmSetting) {
                 AlarmSettingView(selectedTime: $selectedTime, alarms: $alarms, selectedTimeZone: $selectedTimeZone)
             }
         }
+    }
+
+    func deleteReminder(_ reminder: String) {
+        reminders.removeAll { $0 == reminder }
     }
 }
 

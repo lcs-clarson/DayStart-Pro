@@ -16,7 +16,6 @@
 		CB3548C52C135D5B00F89E67 /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = CB3548C42C135D5B00F89E67 /* Realtime */; };
 		CB3548C72C135D5B00F89E67 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = CB3548C62C135D5B00F89E67 /* Storage */; };
 		CB997CA02C0A29F20070656C /* AddReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB997C9F2C0A29F10070656C /* AddReminderView.swift */; };
-		CBC365AA2C177E160021858B /* RemindersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC365A92C177E160021858B /* RemindersViewModel.swift */; };
 		CBD8C4EA2C08B2B600A507B5 /* FrontPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD8C4E92C08B2B600A507B5 /* FrontPageView.swift */; };
 		CBD8C4EE2C08BA5800A507B5 /* AlarmSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD8C4ED2C08BA5800A507B5 /* AlarmSettingView.swift */; };
 		CBFC49EA2C05110F001FF1BC /* DayStart_ProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFC49E92C05110F001FF1BC /* DayStart_ProApp.swift */; };
@@ -29,7 +28,6 @@
 		CB29328C2C1361D300F5922C /* Supabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Supabase.swift; sourceTree = "<group>"; };
 		CB3548BB2C0E45D800F89E67 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CB997C9F2C0A29F10070656C /* AddReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReminderView.swift; sourceTree = "<group>"; };
-		CBC365A92C177E160021858B /* RemindersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersViewModel.swift; sourceTree = "<group>"; };
 		CBD8C4E92C08B2B600A507B5 /* FrontPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontPageView.swift; sourceTree = "<group>"; };
 		CBD8C4ED2C08BA5800A507B5 /* AlarmSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingView.swift; sourceTree = "<group>"; };
 		CBFC49E62C05110F001FF1BC /* DayStart Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DayStart Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,7 +58,7 @@
 			isa = PBXGroup;
 			children = (
 				CB29328C2C1361D300F5922C /* Supabase.swift */,
-				CBC365A92C177E160021858B /* RemindersViewModel.swift */,
+				CBC365AB2C19E1AE0021858B /* ViewModel */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -70,6 +68,13 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CBC365AB2C19E1AE0021858B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		CBFC49DD2C05110F001FF1BC = {
@@ -194,7 +199,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBC365AA2C177E160021858B /* RemindersViewModel.swift in Sources */,
 				CB29328D2C1361D300F5922C /* Supabase.swift in Sources */,
 				CBFC49EC2C05110F001FF1BC /* ContentView.swift in Sources */,
 				CBFC49EA2C05110F001FF1BC /* DayStart_ProApp.swift in Sources */,
